@@ -5,8 +5,24 @@ import {
 } from 'reactstrap';
 class MadLibForm extends Component {
 
-    handleChange = function() {
-        console.log('trying to handle change');
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            color:'',
+            pluralnoun: '',
+            adjectiveOne: '',
+            celbrityOne: ''
+        }
+
+    }
+
+    handleChange = function(props) {
+        return function(event) { 
+            //console.log(`value for input ${props.inputsTitle} is: ${event.target.value}`)
+            this.setState({[props.inputTitle]: event.target.value});
+            console.log(`value for state ${props.inputTitle} is: ${this.state[props.inputTitle]}`)
+        }.bind(this);
     }
 
 
@@ -20,7 +36,12 @@ class MadLibForm extends Component {
                             <label className="greenLabel">1</label>
                         </Col>
                         <Col md="10">
-                            <input placeholder='Color' type='text' onChange={this.handleChange} />
+                            <input placeholder='Color' type='text' onChange={this.handleChange({inputTitle: 'color'})} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="12">
+                            <div className="inputDescription">Color</div>
                         </Col>
                     </Row>
                 </Col> 
@@ -30,7 +51,12 @@ class MadLibForm extends Component {
                             <label className="greenLabel">1</label>
                         </Col>
                         <Col md="10">
-                            <input placeholder='Color' type='text' onChange={this.handleChange} />
+                            <input placeholder='Noun (Plural)' type='text' onChange={this.handleChange({inputTitle: 'noun pluralNoun'})} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="12">
+                            <div className="inputDescription">Noun (Plural)</div>
                         </Col>
                     </Row>
                 </Col> 
@@ -40,7 +66,12 @@ class MadLibForm extends Component {
                             <label className="greenLabel">1</label>
                         </Col>
                         <Col md="10">
-                            <input placeholder='Color' type='text' onChange={this.handleChange} />
+                            <input placeholder='Adjective' type='text' onChange={this.handleChange({inputTitle: 'adjectiveOne'})} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="12">
+                            <div className="inputDescription">Adjective</div>
                         </Col>
                     </Row>
                 </Col> 
@@ -50,7 +81,12 @@ class MadLibForm extends Component {
                             <label className="greenLabel">1</label>
                         </Col>
                         <Col md="10">
-                            <input placeholder='Color' type='text' onChange={this.handleChange} />
+                            <input placeholder='Celebrity' type='text' onChange={this.handleChange({inputTitle: 'celebrityOne'})} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md="12">
+                            <div className="inputDescription">Celebrity</div>
                         </Col>
                     </Row>
                 </Col>  
