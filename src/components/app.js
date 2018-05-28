@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import MadLibForm from './madlib_form';
 export default class App extends Component {
   render() {
     return (
@@ -11,6 +11,7 @@ export default class App extends Component {
              Fill out the fields below and click the generate button<br/> to see the Mad Lib story.
            </div>
           </div>
+          <MadLibForm />
         </div>
       </div>
     );
