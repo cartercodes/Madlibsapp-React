@@ -1,99 +1,89 @@
 import React, { Component } from 'react';
 import {
     Col,
-    Row
+    Row,
+    Card
 } from 'reactstrap';
-class MadLibForm extends Component {
+import _ from 'lodash';
+
+function MadlibInput(props) {
+    return (
+        <Col md="3" className="input-wrapper">
+            <Row>
+                <Col md="2">
+                    <label className="green-label">{props.index}</label>
+                </Col>
+                <Col md="10">
+                    <input placeholder={props.placeholder} value={props.state} type='text' onChange={props.onChange} />
+                </Col>
+            </Row>
+            <Row>
+                <Col md="2"></Col>
+                <Col md="10">
+                    <div className="input-description">{props.placeholder}</div>
+                </Col>
+            </Row>
+        </Col>
+    );
+}
+
+class MadlibForm extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            color:'',
-            pluralnoun: '',
+            color: '',
+            pluralNoun: '',
             adjectiveOne: '',
-            celbrityOne: ''
+            celebrityOne: '',
+            adjectiveTwo: '',
+            nounOne: '',
+            numberOne: '',
+            numberTwo: '',
+
         }
 
     }
 
     handleChange = function(props) {
-        return function(event) { 
-            //console.log(`value for input ${props.inputsTitle} is: ${event.target.value}`)
+        return function(event) {
+            // console.log(`value for input ${props.inputTitle} is: ${event.target.value}`)
             this.setState({[props.inputTitle]: event.target.value});
-            console.log(`value for state ${props.inputTitle} is: ${this.state[props.inputTitle]}`)
+            console.log(`value for state ${props.inputTitle} is: ${this.state[props.inputTitle]}`);
         }.bind(this);
     }
 
-
-
     render() {
-        return (
-            <Row style={{textAlign: 'Center', color: 'white'}}>
-               <Col md="3" className="InputWrapper">
-                    <Row>
-                        <Col md="2">
-                            <label className="greenLabel">1</label>
-                        </Col>
-                        <Col md="10">
-                            <input placeholder='Color' type='text' onChange={this.handleChange({inputTitle: 'color'})} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                            <div className="inputDescription">Color</div>
-                        </Col>
-                    </Row>
-                </Col> 
-                <Col md="3" className="InputWrapper">
-                    <Row>
-                        <Col md="2">
-                            <label className="greenLabel">1</label>
-                        </Col>
-                        <Col md="10">
-                            <input placeholder='Noun (Plural)' type='text' onChange={this.handleChange({inputTitle: 'noun pluralNoun'})} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                            <div className="inputDescription">Noun (Plural)</div>
-                        </Col>
-                    </Row>
-                </Col> 
-                <Col md="3" className="InputWrapper">
-                    <Row>
-                        <Col md="2">
-                            <label className="greenLabel">1</label>
-                        </Col>
-                        <Col md="10">
-                            <input placeholder='Adjective' type='text' onChange={this.handleChange({inputTitle: 'adjectiveOne'})} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                            <div className="inputDescription">Adjective</div>
-                        </Col>
-                    </Row>
-                </Col> 
-                <Col md="3" className="InputWrapper">
-                    <Row>
-                        <Col md="2">
-                            <label className="greenLabel">1</label>
-                        </Col>
-                        <Col md="10">
-                            <input placeholder='Celebrity' type='text' onChange={this.handleChange({inputTitle: 'celebrityOne'})} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                            <div className="inputDescription">Celebrity</div>
-                        </Col>
-                    </Row>
-                </Col>  
-            </Row>
-        );
 
+        this.inputData = [
+            {placeholder: 'Color', prop: 'color', state: this.state.color},
+            {placeholder: 'Noun (Plural)', prop: 'pluralNoun', state: this.state.pluralNoun},
+            {placeholder: 'Adjective', prop: 'adjectiveOne', state: this.state.adjectiveOne},
+            {placeholder: 'Celebrity', prop: 'celebrityOne', state: this.state.celebrityOne},
+
+            {placeholder: 'Adjective', prop: 'adjectiveTwo', state: this.state.adjectiveTwo},
+            {placeholder: 'Noun', prop: 'nounOne', state: this.state.nounOne},
+            {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
+            {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
+
+        ]
+
+      return (
+          <div className="card-wrapper">
+            <Card>
+                <Row style={{textAlign: 'center', color: 'white'}}>
+                    {
+                        _.map(this.inputData, (data, indexKey) => {
+                            return <MadlibInput key={indexKey} index={indexKey + 1} state={data.state} placeholder={data.placeholder} onChange={this.handleChange({inputTitle: data.prop})} />
+                        })
+                    }
+                </Row>
+            </Card>
+          </div>
+        
+      );
     }
 }
 
-export default MadLibForm; 
+export default MadlibForm;
