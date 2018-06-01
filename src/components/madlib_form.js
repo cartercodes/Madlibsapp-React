@@ -36,6 +36,7 @@ class MadlibForm extends Component {
         super(props)
 
         this.state = {
+            completedForm: false,
             color: '',
             pluralNoun: '',
             adjectiveOne: '',
@@ -43,8 +44,15 @@ class MadlibForm extends Component {
             adjectiveTwo: '',
             nounOne: '',
             numberOne: '',
-            numberTwo: ''
-
+            numberTwo: '',
+            nounTwo: '',
+            adjectiveThree: '',
+            celebrityTwo: '',
+            celebrityThree: '',
+            adjectiveFour: '',
+            nounThree: '',
+            celebrityFour: '',
+            adjectiveFive: ''
         }
 
     }
@@ -73,6 +81,14 @@ class MadlibForm extends Component {
             nounOne: '',
             numberOne: '',
             numberTwo: '',
+            nounTwo: '',
+            adjectiveThree: '',
+            celebrityTwo: '',
+            celebrityThree: '',
+            adjectiveFour: '',
+            nounThree: '',
+            celebrityFour: '',
+            adjectiveFive: ''
         });
     }.bind(this)
 
@@ -96,6 +112,15 @@ class MadlibForm extends Component {
             {placeholder: 'Number', prop: 'numberOne', state: this.state.numberOne},
             {placeholder: 'Number', prop: 'numberTwo', state: this.state.numberTwo},
 
+            {placeholder: 'Noun', prop: 'nounTwo', state: this.state.color},
+            {placeholder: 'Adjective', prop: 'adjectiveThree', state: this.state.pluralNoun},
+            {placeholder: 'Celebrity', prop: 'celebrityTwo', state: this.state.adjectiveOne},
+            {placeholder: 'Celebrity', prop: 'celebrityThree', state: this.state.celebrityOne},
+
+            {placeholder: 'Adjective', prop: 'adjectiveForu', state: this.state.adjectiveTwo},
+            {placeholder: 'Noun', prop: 'nounThree', state: this.state.nounOne},
+            {placeholder: 'Celebrity', prop: 'celebrityFour', state: this.state.numberOne},
+            {placeholder: 'Adjective', prop: 'adjectiveFive', state: this.state.numberTwo},
         ]
 
         return (
